@@ -1,0 +1,87 @@
+{
+    "name": "Jamstack",
+    "image": "mcr.microsoft.com/devcontainers/base:0-bullseye",
+    "features": {
+      // General
+      "ghcr.io/devcontainers/features/git:1": {},
+      "ghcr.io/devcontainers/features/node:1": {
+        "version": "18"
+      },
+  
+      // Static Site Generator
+      "ghcr.io/devcontainers/features/go:1": {},
+      "ghcr.io/devcontainers/features/hugo:1": {
+        "version": "0.91.2",
+        "extended": true
+      }
+    },
+    "customizations": {
+      "vscode": {
+        "extensions": [
+          // General
+          "eamodio.gitlens",
+          "EditorConfig.EditorConfig",
+          "esbenp.prettier-vscode",
+          "GitHub.vscode-pull-request-github",
+          "redhat.vscode-yaml",
+
+          // Static Site Generator
+          "budparr.language-hugo-vscode"
+  
+          // "christian-kohler.npm-intellisense",
+          // "DavidAnson.vscode-markdownlint",
+          // "dbaeumer.vscode-eslint",
+          // "sleistner.vscode-fileutils",
+          // "patbenatar.advanced-new-file"
+        ],
+        "settings": {
+          // General
+          "editor.linkedEditing": true,
+          "editor.formatOnPaste": true,
+          "editor.formatOnSave": true,
+          "files.autoSave": "onFocusChange",
+          "telemetry.telemetryLevel": "off",
+          "terminal.integrated.defaultProfile.linux": "zsh",
+  
+          // GitLens
+          "gitlens.currentLine.enabled": false,
+  
+          // YAML
+          "redhat.telemetry.enabled": false,
+  
+          // Prettier
+          "editor.defaultFormatter": "esbenp.prettier-vscode",
+          "prettier.configPath": "configs/prettier/.prettierrc.yaml",
+          "prettier.ignorePath": ".gitignore",
+          "prettier.requireConfig": true,
+
+          // Hugo Language and Syntax Support
+          "[markdown]": {
+            "editor.quickSuggestions": {
+              "other": "on",
+              "comments": "off",
+              "strings": "off"
+            }
+          }
+        }
+      },
+      "codespaces": {
+        "openFiles": ["README.md"]
+      }
+    },
+    "containerEnv": {
+      "CI": "false",
+      "NODE_ENV": "development"
+    },
+    "waitFor": "onCreateCommand",
+    "updateContentCommand": "npm install",
+    "postStartCommand": "nohup bash -c 'npm run dev &'",
+    "forwardPorts": [1313],
+    "portsAttributes": {
+      "1313": {
+        "label": "Web",
+        "onAutoForward": "openPreview"
+      }
+    }
+  }
+  

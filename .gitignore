@@ -1,6 +1,15 @@
+# General
+build/
 coverage/
 dist/
-node_modules/
 public/
 *.env
 CHANGELOG.md
+nohup.out
+
+# Node
+node_modules/
+
+# Hugo
+resources/
+*.lock

@@ -1,1 +1,1 @@
-
+Jamstack
